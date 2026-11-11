@@ -1,0 +1,65 @@
+{
+  "frames": {
+    "frame_000.webp": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 98,
+        "h": 210
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 98,
+        "h": 210
+      },
+      "sourceSize": {
+        "w": 98,
+        "h": 210
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 1.0
+      }
+    },
+    "frame_001.webp": {
+      "frame": {
+        "x": 5,
+        "y": 211,
+        "w": 88,
+        "h": 210
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 0,
+        "w": 88,
+        "h": 210
+      },
+      "sourceSize": {
+        "w": 98,
+        "h": 210
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 1.0
+      }
+    }
+  },
+  "meta": {
+    "app": "SpriteSheet Fixer",
+    "version": "4.0 Multi-Scale Edition",
+    "image": "spritesheet.webp",
+    "format": "RGBA8888",
+    "size": {
+      "w": 98,
+      "h": 421
+    },
+    "scale": "1",
+    "aspect_ratio": "1:1",
+    "centered": true
+  }
+}

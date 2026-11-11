@@ -1,0 +1,12 @@
+node_modules/
+build/
+dist/
+coverage/
+.aistudio/
+public/assets/aistudio/*
+!public/assets/aistudio/684566830_1793311950546470_0b6646bd.jpg
+.DS_Store
+Thumbs.db
+*.log
+.env*
+!.env.example

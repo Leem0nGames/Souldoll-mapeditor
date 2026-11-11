@@ -1,0 +1,38 @@
+{
+  "name": "souldolls-rpg",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3000 --host=0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "assets:player": "node scripts/build-player-spritesheet.mjs",
+    "assets:trees": "node scripts/process-trees.mjs",
+    "assets:souls": "node scripts/process-souls.mjs",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/three": "^0.187.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "seedrandom": "^3.0.5",
+    "three": "^0.187.0",
+    "vite": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/seedrandom": "^3.0.8",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.28.1",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.21.0",
+    "typescript": "^7.0.2"
+  }
+}

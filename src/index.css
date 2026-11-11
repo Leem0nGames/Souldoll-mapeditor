@@ -1,0 +1,544 @@
+@import "tailwindcss";
+
+html, body {
+  touch-action: manipulation;
+  overscroll-behavior: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pt-safe {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+:root {
+  --sd-ink: #14101C;
+  --sd-wood: #2A1F2D;
+  --sd-bronze: #8A6A3B;
+  --sd-gold: #E8B84A;
+  --sd-ki: #5FE3D2;
+  --sd-soul: #9B6BFF;
+  --sd-rift: #C2234B;
+}
+
+/* SoulDolls Brand Typography Scale */
+.sd-type-display {
+  font-family: 'Cinzel', 'Press Start 2P', serif, monospace;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sd-type-heading {
+  font-family: 'Cinzel', 'Press Start 2P', serif, monospace;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.sd-type-label {
+  font-family: 'Outfit', 'Press Start 2P', sans-serif, monospace;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sd-type-body {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.sd-type-meta {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+/* SoulDolls Ornate Frame with Engraved Bronze & Gold Accents */
+.sd-ornate-frame {
+  position: relative;
+  box-shadow: 0 0 0 1px #14101C, 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+.sd-ornate-frame::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--sd-gold);
+  border: 1px solid #FFF5D0;
+  box-shadow: 0 0 4px rgba(232, 184, 74, 0.7);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.sd-ornate-frame::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--sd-gold);
+  border: 1px solid #FFF5D0;
+  box-shadow: 0 0 4px rgba(232, 184, 74, 0.7);
+  pointer-events: none;
+  z-index: 10;
+}
+
+canvas:not(.battle-sprite-canvas) {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.battle-sprite-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  width: auto !important;
+  display: block;
+  margin: 0 auto;
+}
+
+.font-pixel {
+  font-family: 'Press Start 2P', monospace, monospace;
+  image-rendering: pixelated;
+  letter-spacing: -0.05em;
+}
+
+.startup-screen {
+  font-family: 'Press Start 2P', monospace;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(80, 46, 128, 0.3), transparent 56%),
+    linear-gradient(180deg, rgba(7, 5, 13, 0.72), rgba(7, 5, 13, 0.91));
+  animation: startupFadeIn 500ms ease-out both;
+}
+
+.startup-vignette {
+  background:
+    radial-gradient(ellipse at center, transparent 20%, rgba(5, 3, 10, 0.52) 100%),
+    linear-gradient(90deg, rgba(8, 6, 14, 0.25), transparent 50%, rgba(8, 6, 14, 0.25));
+}
+
+.startup-title-panel,
+.startup-loading-panel {
+  border: 1px solid rgba(195, 154, 77, 0.7);
+  background:
+    linear-gradient(145deg, rgba(29, 19, 44, 0.94), rgba(12, 9, 21, 0.96)),
+    #100b1b;
+  box-shadow:
+    0 0 0 4px rgba(8, 5, 14, 0.8),
+    0 0 0 5px rgba(129, 90, 177, 0.5),
+    0 20px 80px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(117, 75, 186, 0.14);
+}
+
+.startup-title-panel::before,
+.startup-title-panel::after,
+.startup-loading-panel::before,
+.startup-loading-panel::after {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #ffe39a;
+  background: #c59b4d;
+  box-shadow: 0 0 14px rgba(246, 212, 119, 0.5);
+  content: '';
+}
+
+.startup-title-panel::before,
+.startup-loading-panel::before {
+  top: -6px;
+  left: -6px;
+}
+
+.startup-title-panel::after,
+.startup-loading-panel::after {
+  right: -6px;
+  bottom: -6px;
+}
+
+.startup-brand-mark,
+.startup-loader-sigil {
+  border: 1px solid rgba(226, 189, 112, 0.8);
+  background: linear-gradient(145deg, rgba(68, 43, 95, 0.9), rgba(21, 14, 34, 0.9));
+  box-shadow: 0 0 18px rgba(192, 132, 252, 0.2), inset 0 0 0 3px rgba(9, 6, 15, 0.65);
+  clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%);
+}
+
+.startup-wordmark {
+  color: #fff1bd;
+  text-shadow: 0 3px 0 #694522, 0 5px 0 #271a2e, 0 0 26px rgba(246, 212, 119, 0.3);
+}
+
+.startup-wordmark-accent {
+  color: #d7bcff;
+  text-shadow: 0 3px 0 #593a78, 0 5px 0 #271a2e, 0 0 26px rgba(192, 132, 252, 0.35);
+}
+
+.startup-orbit {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: min(78vw, 550px);
+  height: min(35vw, 220px);
+  border: 1px solid rgba(183, 142, 235, 0.16);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(-12deg);
+}
+
+.startup-orbit-two {
+  width: min(62vw, 430px);
+  height: min(29vw, 175px);
+  border-color: rgba(233, 193, 111, 0.15);
+  transform: translate(-50%, -50%) rotate(18deg);
+}
+
+.startup-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.startup-hero-glow {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  width: 190px;
+  height: 42px;
+  border: 1px solid rgba(199, 157, 91, 0.8);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(177, 104, 241, 0.38), rgba(78, 46, 116, 0.12) 48%, transparent 72%);
+  box-shadow: 0 0 24px rgba(179, 110, 255, 0.35), inset 0 0 14px rgba(220, 184, 255, 0.16);
+  transform: translateX(-50%);
+}
+
+.startup-hero-rune {
+  position: absolute;
+  bottom: 21px;
+  left: 50%;
+  color: rgba(255, 228, 163, 0.8);
+  font-size: 15px;
+  text-shadow: 0 0 18px #c084fc;
+  transform: translateX(-50%);
+}
+
+.startup-player-sprite {
+  position: relative;
+  z-index: 1;
+  width: 88px;
+  height: 177px;
+  background-image: url('/assets/player_spritesheet.webp');
+  background-position: -9px -33px;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.55));
+  transform: scale(0.78);
+  transform-origin: bottom center;
+  animation: startupHeroFloat 3s ease-in-out infinite;
+}
+
+.startup-hero-caption {
+  position: absolute;
+  right: 0;
+  bottom: 17px;
+  left: 0;
+  color: rgba(232, 214, 177, 0.6);
+  font-size: 7px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.startup-play-button {
+  border: 1px solid #e6c46f;
+  background: linear-gradient(180deg, #42305e, #241936 58%, #1c1429);
+  box-shadow: 0 0 0 3px rgba(8, 5, 14, 0.8), 0 0 24px rgba(183, 142, 235, 0.22), inset 0 1px rgba(255, 238, 193, 0.16);
+}
+
+.startup-loading-panel {
+  border: 1px solid rgba(195, 154, 77, 0.7);
+  background: linear-gradient(145deg, rgba(29, 19, 44, 0.97), rgba(12, 9, 21, 0.98));
+}
+
+.startup-loader-sigil {
+  animation: startupSigilPulse 1.8s ease-in-out infinite;
+}
+
+.startup-progress-track {
+  border: 1px solid rgba(201, 168, 109, 0.75);
+  background: #090711;
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+.startup-progress-fill {
+  background: linear-gradient(90deg, #8362c3, #d9b866 75%, #ffe5a0);
+  box-shadow: 0 0 14px rgba(246, 212, 119, 0.55);
+}
+
+@keyframes startupFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes startupHeroFloat {
+  0%, 100% { transform: scale(0.78) translateY(0); }
+  50% { transform: scale(0.78) translateY(-5px); }
+}
+
+@keyframes startupSigilPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.25)); transform: rotate(0deg); }
+  50% { filter: drop-shadow(0 0 18px rgba(246, 212, 119, 0.75)); transform: rotate(45deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .startup-screen,
+  .startup-player-sprite,
+  .startup-loader-sigil {
+    animation: none;
+  }
+}
+
+@keyframes battleBob {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes battleBobReverse {
+  0%, 100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes shakeH {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+@keyframes flashRed {
+  0%, 100% { opacity: 1; filter: none; }
+  50% { opacity: 0.5; filter: brightness(2.5) drop-shadow(0 0 16px #ef4444); }
+}
+
+@keyframes energyFlicker {
+  0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 4px #a855f7); }
+  50% { opacity: 0.95; filter: drop-shadow(0 0 12px #c084fc); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.animate-battle-bob {
+  animation: battleBob 3.2s ease-in-out infinite;
+}
+
+.animate-battle-bob-rev {
+  animation: battleBobReverse 3.6s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shakeH 0.35s ease-in-out;
+}
+
+@keyframes crystalVibrate {
+  0%, 100% { transform: scale(1) rotate(0deg) translate(0, 0); }
+  15% { transform: scale(1.18) rotate(-14deg) translate(-7px, -5px); }
+  30% { transform: scale(1.25) rotate(14deg) translate(7px, 5px); }
+  45% { transform: scale(1.18) rotate(-10deg) translate(-5px, 3px); }
+  60% { transform: scale(1.22) rotate(10deg) translate(5px, -3px); }
+  75% { transform: scale(1.1) rotate(-5deg) translate(-2px, 0); }
+}
+
+.animate-crystal-vibrate {
+  animation: crystalVibrate 0.38s ease-in-out infinite;
+}
+
+.animate-flash-hit {
+  animation: flashRed 0.4s ease-in-out 2;
+}
+
+.animate-energy-flicker {
+  animation: energyFlicker 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* ===================================================
+   UNIFIED ELEMENTAL HIT KEYFRAME ANIMATIONS
+   =================================================== */
+
+/* 1. Fuego: Violent Incendiary Shudder & Thermal Bloom */
+@keyframes hitFuego {
+  0% { transform: scale(1) translate(0, 0); filter: none; }
+  15% { transform: scale(1.1) translate(-10px, -4px) rotate(-3deg); filter: brightness(2.8) drop-shadow(0 0 26px #ef4444) saturate(2.5); }
+  35% { transform: scale(0.95) translate(12px, 3px) rotate(4deg); filter: brightness(2.2) drop-shadow(0 0 20px #f97316); }
+  55% { transform: scale(1.06) translate(-8px, -2px) rotate(-2deg); filter: brightness(2.6) drop-shadow(0 0 24px #ef4444); }
+  75% { transform: scale(0.98) translate(6px, 2px) rotate(1deg); filter: brightness(1.8) drop-shadow(0 0 14px #ea580c); }
+  100% { transform: scale(1) translate(0, 0); filter: none; }
+}
+.animate-hit-fuego {
+  animation: hitFuego 0.55s ease-in-out;
+}
+
+/* 2. Agua: Hydrodynamic Surge, Viscous Wobble & Aqua Shimmer */
+@keyframes hitAgua {
+  0% { transform: scale(1) skewX(0deg); filter: none; }
+  20% { transform: scaleX(1.22) scaleY(0.82) skewX(-10deg) translateY(6px); filter: brightness(2.4) drop-shadow(0 0 24px #38bdf8) hue-rotate(-15deg); }
+  45% { transform: scaleX(0.85) scaleY(1.18) skewX(8deg) translateY(-8px); filter: brightness(2.0) drop-shadow(0 0 18px #0284c7); }
+  70% { transform: scaleX(1.1) scaleY(0.92) skewX(-4deg) translateY(3px); filter: brightness(1.8) drop-shadow(0 0 14px #38bdf8); }
+  100% { transform: scale(1) skewX(0deg) translateY(0); filter: none; }
+}
+.animate-hit-agua {
+  animation: hitAgua 0.6s ease-in-out;
+}
+
+/* 3. Planta: Acidic Compression Squish & Toxic Bloom */
+@keyframes hitPlanta {
+  0% { transform: scale(1); filter: none; }
+  20% { transform: scale(1.25, 0.75) translateY(10px); filter: brightness(2.6) drop-shadow(0 0 28px #4ade80) saturate(2.8); }
+  45% { transform: scale(0.82, 1.25) translateY(-10px); filter: brightness(2.0) drop-shadow(0 0 20px #16a34a); }
+  70% { transform: scale(1.12, 0.9) translateY(4px); filter: brightness(2.2) drop-shadow(0 0 16px #4ade80); }
+  100% { transform: scale(1) translateY(0); filter: none; }
+}
+.animate-hit-planta {
+  animation: hitPlanta 0.6s ease-in-out;
+}
+
+/* 4. Rayo: Strobe Jitter & High-Voltage Spastic Glitch */
+@keyframes hitRayo {
+  0% { transform: translate(0, 0); filter: none; opacity: 1; }
+  10% { transform: translate(-14px, 6px); filter: brightness(3.5) drop-shadow(0 0 35px #facc15) invert(0.2); opacity: 0.7; }
+  25% { transform: translate(14px, -8px); filter: brightness(1.2) drop-shadow(0 0 10px #ca8a04); opacity: 1; }
+  40% { transform: translate(-10px, -4px); filter: brightness(3.8) drop-shadow(0 0 40px #fef08a) invert(0.3); opacity: 0.6; }
+  60% { transform: translate(8px, 6px); filter: brightness(2.5) drop-shadow(0 0 20px #facc15); opacity: 0.9; }
+  80% { transform: translate(-4px, 2px); filter: brightness(1.8) drop-shadow(0 0 12px #eab308); opacity: 1; }
+  100% { transform: translate(0, 0); filter: none; opacity: 1; }
+}
+.animate-hit-rayo {
+  animation: hitRayo 0.45s steps(8, end);
+}
+
+/* 5. Sombra: Gravitational Collapse Implosion & Void Inversion */
+@keyframes hitSombra {
+  0% { transform: scale(1) rotate(0deg); filter: none; }
+  25% { transform: scale(0.68) rotate(-12deg); filter: brightness(0.25) drop-shadow(0 0 30px #a855f7) invert(0.85); }
+  50% { transform: scale(1.15) rotate(6deg); filter: brightness(2.4) drop-shadow(0 0 26px #7c3aed); }
+  75% { transform: scale(0.9) rotate(-3deg); filter: brightness(0.7) drop-shadow(0 0 18px #c084fc); }
+  100% { transform: scale(1) rotate(0deg); filter: none; }
+}
+.animate-hit-sombra {
+  animation: hitSombra 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 6. Luz: Divine Expansion Flare & Holy Radiation */
+@keyframes hitLuz {
+  0% { transform: scale(1); filter: none; }
+  20% { transform: scale(1.28); filter: brightness(4.0) drop-shadow(0 0 40px #fbbf24) drop-shadow(0 0 60px #ffffff); }
+  45% { transform: scale(0.92); filter: brightness(2.2) drop-shadow(0 0 24px #f59e0b); }
+  70% { transform: scale(1.1); filter: brightness(2.8) drop-shadow(0 0 28px #fbbf24); }
+  100% { transform: scale(1); filter: none; }
+}
+.animate-hit-luz {
+  animation: hitLuz 0.55s ease-out;
+}
+
+/* Floating Elemental Impact Badge */
+@keyframes impactBadgeFloat {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  20% { transform: translateY(-16px) scale(1.2); opacity: 1; }
+  40% { transform: translateY(-24px) scale(1.0); opacity: 1; }
+  80% { transform: translateY(-38px) scale(0.95); opacity: 0.9; }
+  100% { transform: translateY(-48px) scale(0.8); opacity: 0; }
+}
+.animate-impact-badge {
+  animation: impactBadgeFloat 1.2s ease-out forwards;
+}
+
+/* Pixel art corners and frame */
+.pixel-frame {
+  position: relative;
+  background-color: #1a1528;
+  border: 3px solid #c59b27;
+  box-shadow: 0 0 0 1px #000, inset 0 0 0 2px #0f0b18;
+}
+
+.pixel-corner-tl {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: #8b5cf6;
+  border: 1px solid #c084fc;
+}
+
+.pixel-corner-tr {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: #8b5cf6;
+  border: 1px solid #c084fc;
+}
+
+.pixel-corner-bl {
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: #8b5cf6;
+  border: 1px solid #c084fc;
+}
+
+.pixel-corner-br {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: #8b5cf6;
+  border: 1px solid #c084fc;
+}
+
+/* Status Effect Blink (Poison/Burn) */
+@keyframes statusBlink {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50% { opacity: 0.3; filter: brightness(1.5) contrast(1.2); }
+}
+
+.animate-status-blink {
+  animation: statusBlink 0.8s ease-in-out infinite;
+}
+

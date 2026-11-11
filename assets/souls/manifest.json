@@ -1,0 +1,83 @@
+[
+  {
+    "element": "Fuego",
+    "id": "fire",
+    "name": "Ignis",
+    "color": "#ef4444",
+    "file": "/assets/souls/soul_fire.webp",
+    "width": 204,
+    "height": 317
+  },
+  {
+    "element": "Agua",
+    "id": "water",
+    "name": "Aqualis",
+    "color": "#0ea5e9",
+    "file": "/assets/souls/soul_water.webp",
+    "width": 228,
+    "height": 288
+  },
+  {
+    "element": "Tierra",
+    "id": "earth",
+    "name": "Terran",
+    "color": "#84cc16",
+    "file": "/assets/souls/soul_earth.webp",
+    "width": 186,
+    "height": 287
+  },
+  {
+    "element": "Viento",
+    "id": "wind",
+    "name": "Zephyrus",
+    "color": "#bae6fd",
+    "file": "/assets/souls/soul_wind.webp",
+    "width": 226,
+    "height": 293
+  },
+  {
+    "element": "Hielo",
+    "id": "ice",
+    "name": "Glacies",
+    "color": "#7dd3fc",
+    "file": "/assets/souls/soul_ice.webp",
+    "width": 221,
+    "height": 298
+  },
+  {
+    "element": "Rayo",
+    "id": "electric",
+    "name": "Fulgor",
+    "color": "#eab308",
+    "file": "/assets/souls/soul_electric.webp",
+    "width": 211,
+    "height": 297
+  },
+  {
+    "element": "Planta",
+    "id": "nature",
+    "name": "Sylva",
+    "color": "#22c55e",
+    "file": "/assets/souls/soul_nature.webp",
+    "width": 200,
+    "height": 302
+  },
+  {
+    "element": "Luz",
+    "id": "light",
+    "name": "Lumina",
+    "color": "#fbbf24",
+    "file": "/assets/souls/soul_light.webp",
+    "width": 213,
+    "height": 297
+  },
+  {
+    "element": "Sombra",
+    "id": "dark",
+    "name": "Umbra",
+    "color": "#a855f7",
+    "file": "/assets/souls/soul_dark.webp",
+    "width": 178,
+    "height": 282
+  }
+]
